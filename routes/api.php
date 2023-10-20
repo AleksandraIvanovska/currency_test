@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['namespace' => 'App\Http\Controllers'], function ($api) {
+    $api->any('/fixer/{fixer_url_path}', 'External\FixerController@proxy')->where('fixer_url_path', '.*');
 });
+

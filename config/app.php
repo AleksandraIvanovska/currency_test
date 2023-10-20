@@ -55,6 +55,8 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
+    'fixer_key' => env('FIXER_KEY', '0216211d10b5b9ec2ec3012735dbd207'),
+    'fixer_base_url' => env('FIXER_BASE_URL', 'http://data.fixer.io/api/'),
 
     /*
     |--------------------------------------------------------------------------
