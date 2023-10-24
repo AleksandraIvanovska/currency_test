@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFirstTable extends Migration
+class PopulateCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +15,10 @@ class CreateFirstTable extends Migration
      */
     public function up()
     {
-        Schema::create('first', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (DB::getDriverName() == 'sqlite') {
+            return;
+        }
+        Artisan::call('currencies:populate');
     }
 
     /**
@@ -26,6 +28,6 @@ class CreateFirstTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('first');
+        //
     }
 }

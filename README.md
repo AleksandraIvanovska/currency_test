@@ -7,13 +7,13 @@ This repo contains Laravel Currency Conversion app
 - First you need to clone the laravel repository.
 - Now you can pull the latest changes from master, after this  you are ready to start the containers
 - Start the services by running these command:
-  - sudo docker-compose up --build (this will start all of the containers)
+  - sudo docker-compose up --build (this will start all containers)
     - *This will start 3 services* - currency-php, mylocaldb, pgadmin-container
 - For stopping the services you can use these commands:
   - sudo docker-compose stop (this will stop the services but keep them in cache)
   - sudo docker-compose down (this will tear down the services, after this command you have to rebuild them )
-
-
+- To start the services again run:
+  -  sudo docker-compose up
 
 Now you can run commands directly on the laravel container after you run this command:
 - sudo docker exec -it currency-php sh
@@ -21,5 +21,24 @@ Now you can run commands directly on the laravel container after you run this co
 After that you can run 
 - php artisan migrate (this will create tables in the db and populate some of them)
 
-If you wish to add an existing database to the docker you should run the command
-- sudo docker exec -i mylocaldb /bin/bash -c "PGPASSWORD=aleksandra psql --username postgres postgres" < dump/currency_db.sql
+To run the unit tests run command
+- sudo docker exec -it currency-php php artisan test --env=testing
+
+Go to http://127.0.0.1:8000/ to open the view
+ - If you are experiencing some issue run the following commands
+   - php artisan config:clear
+   - php artisan route:clear
+
+Project logic:
+  - The GET:'/api/currencies/getAllCurrencies' route should be used to list all currencies in dropdown and choose from it.
+  - There should be 2 dropdowns one for converting from and one for converting to currency
+  - There should also be a label field to insert the value you want to convert 
+  - After selecting the currencies and value input call the route POST:'/api/currencies/covertCurrency'
+    - Example request body:
+    {
+      "source_currency": "GBP",
+      "target_currency": "MKD",
+      "value": 50
+    }
+
+  - The GET:'/api/currencies/conversions' route will return all conversions that have been made

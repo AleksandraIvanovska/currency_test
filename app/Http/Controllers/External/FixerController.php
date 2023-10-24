@@ -16,7 +16,7 @@ class FixerController extends Controller
             return response()->json(['error' => 'No Fixer path specified'], 400);
         }
 
-        $result = $this->postToFixer($path, $request_data, $request->isMethod('post'));
+        $result = $this->postToFixer($path, $request_data, $request->isMethod('get'));
 
         Log::debug('Request successfully forwarded to Fixer');
         return $result;
