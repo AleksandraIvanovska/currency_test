@@ -30,7 +30,6 @@ class CurrencyConversionService
         return $this->currencyModel::select('id','value','description')->get();
     }
 
-    //The easiest way would be to send a request directly to Fixer to convert(with the 3 query params), but the Free Subscription Plan does not support this API Function
     public function covertCurrency(array $request)
     {
         $source_currency = $this->currencyModel::where('value', $request['source_currency'])->select('currencies.id', 'currencies.value', 'currencies.to_base_eur')->first();
