@@ -35,7 +35,6 @@ To see the db go to http://localhost:5051/browser/ and login with credentials
 To run the unit tests run command
 - sudo docker exec -it currency-php php artisan config:clear
 - sudo docker exec -it currency-php php artisan test --env=testing
-- After that to use the local db again
 
 Go to http://127.0.0.1:8000/ to open the view
  - If you are experiencing some issue run the following commands
