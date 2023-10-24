@@ -21,8 +21,21 @@ Now you can run commands directly on the laravel container after you run this co
 After that you can run 
 - php artisan migrate (this will create tables in the db and populate some of them)
 
+To see the db go to http://localhost:5051/browser/ and login with credentials
+- aleksandra@example.com
+- pass:aleksandra
+- Create new server with creds from the env:
+  - DB_HOST=127.0.0.1
+  - DB_PORT=5432
+  - DB_DATABASE=postgres
+  - DB_USERNAME=postgres
+  - DB_PASSWORD=postgres
+
+
 To run the unit tests run command
+- sudo docker exec -it currency-php php artisan config:clear
 - sudo docker exec -it currency-php php artisan test --env=testing
+- After that to use the local db again
 
 Go to http://127.0.0.1:8000/ to open the view
  - If you are experiencing some issue run the following commands
